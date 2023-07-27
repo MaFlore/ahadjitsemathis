@@ -1,0 +1,41 @@
+{{extend 'header.html'}} {{ block contenu }}
+<h2>Modification d'un employé</h2>
+<a href="{{=URL( 'employe', 'liste_employes')}}"><button type="button " class="btn rounded-pill btn-success ">Retour</button></a>
+<form class="form-horizontal " method="post" action="{{=URL( 'employe', 'modifier_employe', vars={'id':donne.id})}} ">
+    <div class=" form-group ">
+        <label class="control-label col-sm-2 " for="nom">Nom :</label>
+        <div class="col-sm-10 ">
+            <input type="text" value="{{ =donne.nom }}" class="form-control " id="nom" name="nom" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="prenom">Prenom :</label>
+        <div class="col-sm-10 ">
+            <input type="text" value="{{ =donne.prenom }}" class="form-control " id="prenom" name="prenom" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="adresse">Adresse:</label>
+        <div class="col-sm-10 ">
+            <input type="text" value="{{ =donne.adresse }}" class="form-control " id="adresse" name="adresse" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="email">Email:</label>
+        <div class="col-sm-10 ">
+            <input type="email" value="{{ =donne.email }}" class="form-control " id="email" name="email" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="telephone">Telephone:</label>
+        <div class="col-sm-10 ">
+            <input type="text" value="{{ =donne.telephone }}" class="form-control " id="telephone" name="telephone" required>
+        </div>
+    </div>
+    <div class="form-group button ">
+        <div class="col-sm-offset-2 col-sm-10 ">
+            <button type="submit" class="btn btn-warning">Modifier</button>
+        </div>
+    </div>
+</form>
+{{ end }}

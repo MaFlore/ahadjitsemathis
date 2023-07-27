@@ -1,0 +1,100 @@
+timestamp: 2023-07-27T14:44:52.559669
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2023-07-27T14:44:52.603716
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2023-07-27T14:44:52.613325
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
+timestamp: 2023-07-27T14:44:52.623781
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2023-07-27T14:44:52.633823
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2023-07-27T14:44:52.643146
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2023-07-27T15:39:29.966641
+CREATE TABLE "client"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nom" CHAR(512),
+    "prenom" CHAR(512),
+    "adresse" CHAR(512),
+    "email" CHAR(512),
+    "telephone" CHAR(512)
+);
+success!
+timestamp: 2023-07-27T15:39:29.982858
+CREATE TABLE "qualification"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "code" CHAR(512),
+    "libelle" CHAR(512),
+    "tarif_journalier" INTEGER
+);
+success!
+timestamp: 2023-07-27T15:39:29.994975
+CREATE TABLE "employe"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nom" CHAR(512),
+    "prenom" CHAR(512),
+    "adresse" CHAR(512),
+    "email" CHAR(512),
+    "telephone" CHAR(512)
+);
+success!
+timestamp: 2023-07-27T15:39:30.005196
+CREATE TABLE "contrat"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "description" TEXT,
+    "date_debut" DATE,
+    "qualification" INTEGER REFERENCES "qualification" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "nombre_employe" INTEGER
+);
+success!
+timestamp: 2023-07-27T15:39:30.016221
+CREATE TABLE "intervention"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "contrat" INTEGER REFERENCES "contrat" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "date_intervention" DATE,
+    "date_fin" DATE
+);
+success!

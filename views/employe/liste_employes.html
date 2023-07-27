@@ -1,0 +1,67 @@
+{{extend 'header.html'}} {{ block contenu }}
+<h2>Liste des employés</h2>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Adresse</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th style="text-align: center;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{for row in employes:}}
+        <tr>
+            <td>
+                {{= row.id }}
+            </td>
+            <td>
+                {{= row.nom }}
+            </td>
+            <td>
+                {{= row.prenom }}
+            </td>
+            <td>
+                {{= row.adresse }}
+            </td>
+            <td>
+                {{= row.email }}
+            </td>
+            <td>
+                {{= row.telephone }}
+            </td>
+            <td style="text-align: center;">
+                <a href="{{=URL('employe', 'modifier_employe', vars={'id': row.id})}}"><button type="button" class="btn rounded-pill btn-warning" >Modifier</button></a>
+                <a class="btn rounded-pill btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</a>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Suppression d'un employé</h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Cette action est irréversible ! Voulez-vous supprimer cet employé ?
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <a class="btn rounded-pill btn-danger" href="{{=URL('employe', 'supprimer_employe', vars={'id': row.id})}}">Confirmez</a>
+                                <a class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{pass}}
+    </tbody>
+</table>
+<a href="{{ =URL('employe', 'ajout_employe') }}"><button type="button" class="btn rounded-pill btn-info" >Ajouter</button></a> {{ end }}

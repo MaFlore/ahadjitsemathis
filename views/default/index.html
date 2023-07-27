@@ -1,0 +1,34 @@
+{{ extend 'header.html' }} {{ block contenu }}
+<h4 style="text-align: center;">Bienvenue dans notre application de gestion de PME!</h4>
+<h4 style="text-align: center;">Ci-dessous vos statistiques.</h4>
+<div class="row">
+    <div class="column">
+        <div class="card">
+            <h3>Clients</h3>
+            <p>{{ =count1 }}</p>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <h3>Employes</h3>
+            <p>{{ =count2 }}</p>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <h3>Contrats</h3>
+            <p>{{ =count3 }}</p>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="card">
+            <h3>Interventions</h3>
+            <p>{{ =count4 }}</p>
+        </div>
+    </div>
+</div>
+</div>
+{{ end }}
