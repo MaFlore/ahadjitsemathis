@@ -1,0 +1,40 @@
+{{extend 'header.html'}} 
+{{ block contenu }}
+<h2>Ajout d'un contrat</h2>
+<a href="{{=URL('contrat', 'liste_contrats')}}"><button type="button" class="btn rounded-pill btn-success">Retour</button></a>
+<form class="form-horizontal" method="post" action="{{=URL('contrat', 'ajout_contrat')}}">
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="description">Description :</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="description" name="description" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="date_debut">Date début :</label>
+        <div class="col-sm-10">
+            <input type="date" class="form-control" id="date_debut" name="date_debut" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="nombre_employe">Nombre d'employés :</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="nombre_employe" name="nombre_employe" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="qualification">Qualification :</label>
+        <div class="col-sm-8 form-group">
+            <select class="form-control" name="qualification">
+                {{ for qualification in qualifications: }}
+                    <option value="{{=qualification.id}}">{{=qualification.libelle}}</option>
+                {{ pass }}
+            </select>
+        </div>
+    </div>
+    <div class="form-group button">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </div>
+    </div>
+</form>
+{{ end }}

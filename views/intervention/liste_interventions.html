@@ -1,0 +1,59 @@
+{{extend 'header.html'}} {{ block contenu }}
+<h2>Liste des interventions</h2>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Contrat</th>
+            <th>Date intervention</th>
+            <th>Date fin</th>
+            <th style="text-align: center;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{for row in interventions:}}
+        <tr>
+            <td>
+                {{= row.id }}
+            </td>
+            <td>
+                {{= row.contrat.description }}
+            </td>
+            <td>
+                {{= row.date_intervention }}
+            </td>
+            <td>
+                {{= row.date_fin }}
+            </td>
+            <td style="text-align: center;">
+                <a href="{{=URL('intervention', 'modifier_intervention', vars={'id': row.id})}}"><button type="button" class="btn rounded-pill btn-warning" >Modifier</button></a>
+                <a class="btn rounded-pill btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Supprimer</a>
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Suppression d'une intervention</h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                Cette action est irréversible ! Voulez-vous supprimer cette intervention ?
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <a class="btn rounded-pill btn-danger" href="{{=URL('intervention', 'supprimer_intervention', vars={'id': row.id})}}">Confirmez</a>
+                                <a class="btn btn-secondary" data-bs-dismiss="modal">Annuler</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {{pass}}
+    </tbody>
+</table>
+<a href="{{ =URL('intervention', 'ajout_intervention') }}"><button type="button" class="btn rounded-pill btn-info" >Ajouter</button></a> {{ end }}

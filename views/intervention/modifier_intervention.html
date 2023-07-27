@@ -1,0 +1,34 @@
+{{extend 'header.html'}}
+{{ block contenu }}
+<h2>Modification d'une intervention</h2>
+<a href="{{=URL( 'intervention', 'liste_interventions')}}"><button type="button " class="btn rounded-pill btn-success ">Retour</button></a>
+<form class="form-horizontal " method="post" action="{{=URL( 'intervention', 'modifier_intervention', vars={'id':donne.id})}} ">
+    <div class=" form-group ">
+        <label class="control-label col-sm-2 " for="date_intervention">Date d'intervention :</label>
+        <div class="col-sm-10 ">
+            <input type="date" value="{{ =donne.date_intervention }}" class="form-control " id="date_intervention" name="date_intervention" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="date_fin">Date fin :</label>
+        <div class="col-sm-10 ">
+            <input type="date" value="{{ =donne.date_fin }}" class="form-control " id="date_fin" name="date_fin" required>
+        </div>
+    </div>
+    <div class="form-group ">
+        <label class="control-label col-sm-2 " for="contrat">Contrat :</label>
+        <div class="col-sm-8 form-group ">
+            <select class="form-control" name="contrat">
+                {{ for contrat in contrats: }}
+                    <option value="{{ =contrat.id }}" {{='selected' if contrat.id == donne.contrat else ''}}>{{ =contrat.description }}</option>
+                {{ pass }}
+            </select>
+        </div>
+    </div>
+    <div class="form-group button ">
+        <div class="col-sm-offset-2 col-sm-10 ">
+            <button type="submit" class="btn btn-warning">Modifier</button>
+        </div>
+    </div>
+</form>
+{{ end }}

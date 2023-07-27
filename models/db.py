@@ -168,7 +168,7 @@ db.define_table('qualification',
     Field('code'),
     Field('libelle'),
     Field('tarif_journalier', 'integer'),
-    format = '%(nom)s'
+    format = '%(libelle)s'
 )
 
 db.define_table('employe',
@@ -192,5 +192,5 @@ db.define_table('intervention',
     Field('contrat', 'reference contrat'),
     Field('date_intervention', 'date'),
     Field('date_fin', 'date'),
-    format = '%(description)s'
+    format = '%(contrat)s'
 )
