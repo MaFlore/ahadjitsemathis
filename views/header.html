@@ -26,6 +26,9 @@
                 <li><a href="{{ =URL('contrat', 'liste_contrats') }}">Contrats</a></li>
                 <li><a href="{{ =URL('intervention', 'liste_interventions') }}">Interventions</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ =URL('default', 'user/logout') }}"><span class="glyphicon glyphicon-log-in"></span> Déconnectez-vous</a></li>
+              </ul>
         </div>
     </nav>
     {{ end }}

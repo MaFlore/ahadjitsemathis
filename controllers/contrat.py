@@ -31,5 +31,5 @@ def modifier_contrat():
 
 def supprimer_contrat():
     id = request.vars.id
-    db(db.contrats.id == id).delete()
+    db(db.contrat.id == id).delete()
     redirect(URL('contrat', 'liste_contrats'))

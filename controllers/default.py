@@ -5,6 +5,8 @@
 # -------------------------------------------------------------------------
 
 # ---- example index page ----
+#@auth.requires_membership('administrateur') 
+@auth.requires_login()
 def index():
     query1 = db.client
     count1 = db(query1).count()

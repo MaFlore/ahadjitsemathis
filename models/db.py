@@ -154,6 +154,8 @@ if configuration.get('scheduler.enabled'):
 # -------------------------------------------------------------------------
 # auth.enable_record_versioning(db)
 db = DAL('sqlite://pme.sqlite', pool_size=0, migrate=True)
+auth = Auth(db)
+auth.define_tables(username=False,signature=True)
 
 db.define_table('client',
     Field('nom'),
@@ -183,13 +185,13 @@ db.define_table('employe',
 db.define_table('contrat',
     Field('description', 'text'),
     Field('date_debut', 'date'),
-    Field('qualification', 'reference qualification'),
+    Field('qualification', 'reference qualification', ondelete='SET NULL'),
     Field('nombre_employe', 'integer'),
     format = '%(description)s'
 )
 
 db.define_table('intervention',
-    Field('contrat', 'reference contrat'),
+    Field('contrat', 'reference contrat', ondelete='SET NULL'),
     Field('date_intervention', 'date'),
     Field('date_fin', 'date'),
     format = '%(contrat)s'
