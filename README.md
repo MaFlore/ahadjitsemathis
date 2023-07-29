@@ -1,2 +1,2 @@
 # contrat
-Examen Framework pour le Développement d’Application Web CSC 308
+Examen Framework pour le Développement d’Application Web.
